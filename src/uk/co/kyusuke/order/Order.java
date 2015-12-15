@@ -7,7 +7,7 @@ import java.util.Map;
 import uk.co.kyusuke.Status;
 
 public interface Order {
-	public void addOrder(int orderId, int[] itemList,
+	public void addOrder(int[] itemList,
 			int quantity, int datePlaced, Status status,
 			int assignedTo, String address, BigDecimal totalPrice);
 	

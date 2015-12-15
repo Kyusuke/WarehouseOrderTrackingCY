@@ -1,6 +1,9 @@
 package uk.co.kyusuke;
 
+import java.math.BigDecimal;
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,16 +18,16 @@ public class DummyData {
 		setOrder("002","12312,1213,12312","30,30,30","1450113029",Status.DELIVERING);
 	}	
 	
-	public void setOrder(String orderId, String itemList,
-			String quantity, String datePlaced, Status status)
-	{
+	public void setOrder(int[] itemList,
+			int quantity, Date datePlaced, Status status,
+			int assignedTo, String address, BigDecimal totalPrice)
+	{ 
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("orderId", orderId);
-		map.put("itemList", itemList);
-		map.put("quantity", quantity);
-		map.put("datePlaced", datePlaced);
+		map.put("itemList", Arrays.toString(itemList));
+		map.put("quantity", Integer.toString(quantity));
+		map.put("datePlaced", datePlaced.toString());
 		map.put("status", status.name());
-		orderData.add(Integer.parseInt(orderId),map);
+		orderData.add(map);
 	}
 	
 	public List<Map<String, String>> getOrderList(){

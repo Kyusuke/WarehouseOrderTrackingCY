@@ -1,5 +1,6 @@
 package uk.co.kyusuke.database;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -11,9 +12,10 @@ public class DatabaseCore implements Order{
 	
 	DummyData dummyData = new DummyData();
 			
-	public void addOrder(String orderId, String itemList,
-			String quantity, String datePlaced, Status status){
-		dummyData.setOrder(orderId, itemList, quantity, datePlaced, status);
+	public void addOrder(int[] itemList,
+			int quantity, int datePlaced, Status status,
+			int assignedTo, String address, BigDecimal totalPrice){
+		dummyData.setOrder(itemList, quantity, datePlaced, status);
 	}
 	
 	public List<Map<String, String>> listOrder(){
