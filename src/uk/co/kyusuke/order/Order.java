@@ -16,4 +16,6 @@ public interface Order {
 	public Map<String, String> viewOrder(int order);
 	
 	public void updateOrderStatus(int orderId, Status status);
+	
+	public void accessDB();
 }

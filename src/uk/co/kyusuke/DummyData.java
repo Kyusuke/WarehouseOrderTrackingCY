@@ -12,7 +12,7 @@ public class DummyData {
 
 	List<Map<String, String>> orderData = new ArrayList<>();
 	
-	public DummyData(){
+	/*public DummyData(){
 		setOrder("000","12345,1231,121211","121,12,50","1450111219",Status.PROCESSING);
 		setOrder("001","12211,112,123451","50,60,40","1450112043",Status.CANCELLED);
 		setOrder("002","12312,1213,12312","30,30,30","1450113029",Status.DELIVERING);
@@ -42,5 +42,5 @@ public class DummyData {
 		Map<String, String> order = orderData.get(orderId);
 		order.put("status", status.name());
 		orderData.set(orderId, order);
-	}
+	}*/
 }

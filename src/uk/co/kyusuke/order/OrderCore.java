@@ -35,4 +35,10 @@ public class OrderCore implements Order {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void accessDB() {
+		// TODO Auto-generated method stub
+		
+	}
 }
