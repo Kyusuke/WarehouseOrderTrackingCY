@@ -3,8 +3,6 @@ package uk.co.kyusuke.data;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import uk.co.kyusuke.Status;
-
 public class OrderData {
 	private int orderId;
 	private Date datePlaced;

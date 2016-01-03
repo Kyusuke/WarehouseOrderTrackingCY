@@ -4,8 +4,6 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-import uk.co.kyusuke.Status;
-
 public class OrderDetailData extends OrderData{
 	private List<ProductListData> productList;
 	

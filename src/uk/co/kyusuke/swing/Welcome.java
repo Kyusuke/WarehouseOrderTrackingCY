@@ -19,6 +19,7 @@ import javax.swing.border.EmptyBorder;
 
 import uk.co.kyusuke.WarehouseTracking;
 import uk.co.kyusuke.data.EmployeeData;
+import uk.co.kyusuke.data.WarehouseModel;
 import uk.co.kyusuke.order.Order;
 import uk.co.kyusuke.order.OrderCore;
 import uk.co.kyusuke.swing.adapter.EmployeeListCellRenderer;
@@ -62,10 +63,10 @@ public class Welcome extends JPanel {
 		btnSignIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				EmployeeData employee = (EmployeeData) cbbEmployee.getSelectedItem();
-				WarehouseTracking.employee = employee;
+				WarehouseModel model = WarehouseTracking.getModel();
+				model.setEmployee(employee);
 				
-				Dimension d = new Dimension(465,185);
-				mFrame.changePanel("menu", d);
+				mFrame.showMenu();
 			}
 		});
 		add(btnSignIn);

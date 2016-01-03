@@ -1,4 +1,4 @@
-package uk.co.kyusuke;
+package uk.co.kyusuke.data;
 
 public enum Status {
 	PLACED,

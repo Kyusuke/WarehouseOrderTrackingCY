@@ -2,8 +2,6 @@ package uk.co.kyusuke.data;
 
 import java.util.Date;
 
-import uk.co.kyusuke.Status;
-
 public class StockOrderData {
 	private int stockDeliveryId;
 	private Status status;

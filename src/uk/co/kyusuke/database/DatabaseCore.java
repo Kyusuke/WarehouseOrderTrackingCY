@@ -9,11 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import uk.co.kyusuke.Status;
 import uk.co.kyusuke.data.EmployeeData;
 import uk.co.kyusuke.data.OrderData;
 import uk.co.kyusuke.data.OrderDetailData;
+import uk.co.kyusuke.data.ProductData;
 import uk.co.kyusuke.data.ProductListData;
+import uk.co.kyusuke.data.Status;
 import uk.co.kyusuke.data.StockOrderData;
 import uk.co.kyusuke.data.StockOrderDetailData;
 import uk.co.kyusuke.data.StockOrderListData;
@@ -196,6 +197,46 @@ public class DatabaseCore implements Order{
 		return employee;
 	}
 	
+	public List<ProductData> listProduct() throws SQLException {
+		stmt = conn.createStatement();
+		
+		String query = "SELECT * FROM `" + DB_PRODUCT + "`;";
+		rs = stmt.executeQuery(query);
+		List<ProductData> product = new ArrayList<>();
+		while(rs.next()){
+			product.add(new ProductData(rs.getInt(PRODUCT_PRODUCTID),
+					rs.getString(PRODUCT_NAME),
+					rs.getBigDecimal(PRODUCT_PRICE),
+					rs.getString(PRODUCT_LOCATIONINWAREHOUSE),
+					rs.getInt(PRODUCT_STOCK),
+					rs.getInt(PRODUCT_RESERVEDSTOCK),
+					rs.getInt(PRODUCT_STOCKTHRESHOLD)));
+		}
+		rs.close();
+		conn.close();
+		return product;
+	}
+	
+	public ProductData viewProduct(int productId) throws SQLException {
+		stmt = conn.createStatement();
+		
+		String query = "SELECT * FROM `" + DB_PRODUCT + "` WHERE `" + PRODUCT_PRODUCTID + "`='" + productId + "';";
+		rs = stmt.executeQuery(query);
+		ProductData pd = null;
+		while(rs.next()){
+			pd = new ProductData(rs.getInt(PRODUCT_PRODUCTID),
+					rs.getString(PRODUCT_NAME),
+					rs.getBigDecimal(PRODUCT_PRICE),
+					rs.getString(PRODUCT_LOCATIONINWAREHOUSE),
+					rs.getInt(PRODUCT_STOCK),
+					rs.getInt(PRODUCT_RESERVEDSTOCK),
+					rs.getInt(PRODUCT_STOCKTHRESHOLD)));
+		}
+		rs.close();
+		conn.close();
+		return pd;
+	}
+	
 	public void updateStock(int productId, int stock, int reservedStock) throws SQLException {
 		stmt = conn.createStatement();
 		
@@ -245,8 +286,8 @@ public class DatabaseCore implements Order{
 	public StockOrderDetailData viewDeliveryOrder(int orderId) throws SQLException {
 		stmt = conn.createStatement();
 		
-		String orderQuery = "SELECT * FROM `" + DB_PRODUCT + "` WHERE `" + PRODUCT_PRODUCTID + "`='" + orderId + "';";
-		String stockListQuery = "SELECT * FROM `" + DB_PRODUCTLIST + "` WHERE `" + PRODUCT_PRODUCTID + "`='" + orderId + "';";
+		String orderQuery = "SELECT * FROM `" + DB_STOCKDELIVERIES + "` WHERE `" + STOCK_STOCKDELIVERYID + "`='" + orderId + "';";
+		String stockListQuery = "SELECT * FROM `" + DB_STOCKDELIVERYLIST + "` WHERE `" + STOCK_STOCKDELIVERYID + "`='" + orderId + "';";
 		
 		rs = stmt.executeQuery(orderQuery);
 		
@@ -283,6 +324,14 @@ public class DatabaseCore implements Order{
 		String query = "UPDATE `" + DB_STOCKDELIVERIES + "` SET `" + STOCK_STATUS + "`='" + status + "' WHERE `" + STOCK_STOCKDELIVERYID + "`='" + orderId + "';";
 		stmt.executeUpdate(query);
 		conn.close();
+	}
+
+	public Map<Integer, String> employeeMap() throws SQLException {
+		return null;
+	}
+
+	public Map<Integer, String> productMap() throws SQLException {
+		return null;
 	}
 
 	

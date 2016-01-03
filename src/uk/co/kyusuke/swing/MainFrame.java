@@ -15,6 +15,8 @@ public class MainFrame extends JFrame {
 	 */
 	private static final long serialVersionUID = -8370890588381146147L;
 	
+	private CustomerOrderDetail customerOrderDetail = new CustomerOrderDetail(MainFrame.this);
+	private CustomerOrderList customerOrderList = new CustomerOrderList(MainFrame.this);
 	private Menu menuPanel = new Menu(MainFrame.this); 
 	private Welcome welcomePanel = new Welcome(MainFrame.this);
 	 
@@ -32,6 +34,8 @@ public class MainFrame extends JFrame {
 		setSize(d);
 		
 		panelContainer.setLayout(cl);
+		panelContainer.add(customerOrderDetail, "customerOrderDetail");
+		panelContainer.add(customerOrderList, "customerOrderList");
 		panelContainer.add(welcomePanel, "welcome");
 		panelContainer.add(menuPanel, "menu");
 		cl.show(panelContainer, "welcome");
@@ -40,14 +44,28 @@ public class MainFrame extends JFrame {
 		setVisible(true);
 	}
 
-	public void changePanel(String panelName, Dimension d){
-		menuPanel.revalidate();
+	private void changePanel(String panelName, Dimension d){
 		cl.show(panelContainer, panelName);
 		setSize(d);
 	}
+	
+	public void showWelcome(){
+		Dimension d = new Dimension(400,140);
+		changePanel("welcome", d);
+	}
+	
+	public void showMenu(){
+		Dimension d = new Dimension(465,185);
+		changePanel("menu", d);
+	}
+	
+	public void showCustomerOrderDetail(){
+		Dimension d = new Dimension(600,400);
+		changePanel("customerOrderDetail", d);
+	}
+	
+	public void showCustomerOrderList(){
+		Dimension d = new Dimension(580,330);
+		changePanel("customerOrderList", d);
+	}
 }
-
-/*//setBounds(100, 100, 395, 165);
-
-getContentPane().add(welcomePanel);
-setLayout(null);*/

@@ -12,14 +12,15 @@ import uk.co.kyusuke.data.EmployeeData;
 import uk.co.kyusuke.data.OrderDetailData;
 import uk.co.kyusuke.data.ProductListData;
 import uk.co.kyusuke.data.OrderData;
+import uk.co.kyusuke.data.WarehouseModel;
 import uk.co.kyusuke.database.DatabaseCore;
 import uk.co.kyusuke.order.Order;
 import uk.co.kyusuke.swing.MainFrame;
 
 
 public class WarehouseTracking {
-	static Order order = new DatabaseCore();
-	public static EmployeeData employee;
+	//static Order order = new DatabaseCore();
+	public static WarehouseModel model = new WarehouseModel();
 
 	public static void main(String[] args) throws SQLException {
 		/*List<ProductListData> pld = new ArrayList<>();
@@ -59,5 +60,9 @@ public class WarehouseTracking {
 				}
 			}
 		});
+	}
+	
+	public static WarehouseModel getModel(){
+		return model;
 	}
 }

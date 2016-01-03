@@ -5,13 +5,16 @@ import javax.swing.JLabel;
 
 import uk.co.kyusuke.WarehouseTracking;
 import uk.co.kyusuke.data.EmployeeData;
+import uk.co.kyusuke.data.WarehouseModel;
 
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -32,6 +35,11 @@ public class Menu extends JPanel {
 		add(lblChooseATask);
 		
 		JButton btnViewCustomerOrders = new JButton("<html>View Customer Orders");
+		btnViewCustomerOrders.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mFrame.showCustomerOrderList();
+			}
+		});
 		btnViewCustomerOrders.setBounds(10, 81, 125, 59);
 		add(btnViewCustomerOrders);
 		
@@ -46,8 +54,7 @@ public class Menu extends JPanel {
 		JButton btnChangeUser = new JButton("Change User");
 		btnChangeUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Dimension d = new Dimension(400,140);
-				mFrame.changePanel("welcome", d);
+				mFrame.showWelcome();
 			}
 		});
 		btnChangeUser.setBounds(10, 36, 110, 23);
@@ -80,7 +87,8 @@ public class Menu extends JPanel {
 	}
 	
 	private void panelShowOperations(){
-		EmployeeData employee = WarehouseTracking.employee;
+		WarehouseModel model = WarehouseTracking.getModel();
+		EmployeeData employee = model.getEmployee();
 		lblWelcome = new JLabel("Welcome " + employee.getName());
 		lblWelcome.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblWelcome.setBounds(10, 11, 245, 20);
