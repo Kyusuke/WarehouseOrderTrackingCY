@@ -1,21 +1,37 @@
 package uk.co.kyusuke.order;
 
-import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
 import uk.co.kyusuke.Status;
+import uk.co.kyusuke.data.EmployeeData;
+import uk.co.kyusuke.data.OrderData;
+import uk.co.kyusuke.data.OrderDetailData;
+import uk.co.kyusuke.data.ProductListData;
+import uk.co.kyusuke.data.StockOrderData;
+import uk.co.kyusuke.data.StockOrderDetailData;
 
 public interface Order {
-	public void addOrder(int[] itemList,
-			int quantity, int datePlaced, Status status,
-			int assignedTo, String address, BigDecimal totalPrice);
+	public void addCustomerOrder(OrderDetailData orderDetail) throws SQLException;
 	
-	public List<Map<String, String>> listOrder();
+	public List<OrderData> listCustomerOrder() throws SQLException;
 	
-	public Map<String, String> viewOrder(int order);
+	public OrderDetailData viewCustomerOrder(int orderId) throws SQLException;
 	
-	public void updateOrderStatus(int orderId, Status status);
+	public void updateCustomerOrderStatus(int orderId, Status status) throws SQLException;
 	
-	public void accessDB();
+	public void assignOrder(int orderId, int employeeId) throws SQLException;
+	
+	public List<EmployeeData> listEmployee() throws SQLException;
+	
+	public void updateStock(int productId, int stock, int reservedStock) throws SQLException;
+	
+	public void addDeliveryOrder(StockOrderDetailData orderDetail) throws SQLException;
+	
+	public List<StockOrderData> listDeliveryOrder() throws SQLException;
+	
+	public StockOrderDetailData viewDeliveryOrder(int orderId) throws SQLException;
+	
+	public void updateDeliveryOrderStatus(int orderId, Status status) throws SQLException;
 }

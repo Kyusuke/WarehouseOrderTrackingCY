@@ -1,9 +1,9 @@
 package uk.co.kyusuke;
 
 public enum Status {
+	PLACED,
 	PROCESSING,
-	ORDERED,
-	DELIVERING,
+	DISPATCHED,
 	DELIVERED,
 	DELAYED,
 	CANCELLED

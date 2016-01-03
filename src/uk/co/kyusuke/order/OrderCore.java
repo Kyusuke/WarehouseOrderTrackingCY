@@ -1,43 +1,83 @@
 package uk.co.kyusuke.order;
 
-import java.math.BigDecimal;
+import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import uk.co.kyusuke.Status;
+import uk.co.kyusuke.data.EmployeeData;
+import uk.co.kyusuke.data.OrderData;
+import uk.co.kyusuke.data.OrderDetailData;
+import uk.co.kyusuke.data.StockOrderData;
+import uk.co.kyusuke.data.StockOrderDetailData;
 import uk.co.kyusuke.database.DatabaseCore;
 
 public class OrderCore implements Order {
 	
-	Order db = new DatabaseCore();
+	public void addCustomerOrder(OrderDetailData orderDetail){
+		
+	}
+
+	public List<OrderData> listCustomerOrder() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public OrderDetailData viewCustomerOrder(int order) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void updateCustomerOrderStatus(int orderId, Status status) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void assignOrder(int orderId, int employeeId) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public List<EmployeeData> listEmployee() throws SQLException {
+		Order db = new DatabaseCore();
+		List<EmployeeData> employeeList = db.listEmployee();
+		return employeeList;
+	}
 	
-	@Override
-	public void addOrder(int[] itemList,
-			int quantity, int datePlaced, Status status,
-			int assignedTo, String address, BigDecimal totalPrice){
-		
+	public Map<Integer, String> employeeMap() throws SQLException {
+		List<EmployeeData> employeeList = listEmployee();
+		Map<Integer, String> employeeMap = new HashMap<Integer, String>();
+		for(EmployeeData ed : employeeList){
+			employeeMap.put(ed.getEmployeeId(), ed.getName());
+		}
+		return employeeMap;
 	}
 
-	@Override
-	public List<Map<String, String>> listOrder() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Map<String, String> viewOrder(int order) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void updateOrderStatus(int orderId, Status status) {
+	public void updateStock(int productId, int stock, int reservedStock)
+			throws SQLException {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
-	public void accessDB() {
+	public void addDeliveryOrder(StockOrderDetailData orderDetail)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public List<StockOrderData> listDeliveryOrder() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public StockOrderDetailData viewDeliveryOrder(int orderId) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void updateDeliveryOrderStatus(int orderId, Status status)
+			throws SQLException {
 		// TODO Auto-generated method stub
 		
 	}
