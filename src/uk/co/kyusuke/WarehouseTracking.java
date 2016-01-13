@@ -10,6 +10,7 @@ import javax.swing.SwingUtilities;
 import uk.co.kyusuke.data.EmployeeData;
 import uk.co.kyusuke.data.OrderDetailData;
 import uk.co.kyusuke.data.ProductListData;
+import uk.co.kyusuke.data.WarehouseModel;
 import uk.co.kyusuke.order.Order;
 import uk.co.kyusuke.swing.MainFrame;
 

@@ -230,7 +230,7 @@ public class DatabaseCore implements Order{
 					rs.getString(PRODUCT_LOCATIONINWAREHOUSE),
 					rs.getInt(PRODUCT_STOCK),
 					rs.getInt(PRODUCT_RESERVEDSTOCK),
-					rs.getInt(PRODUCT_STOCKTHRESHOLD)));
+					rs.getInt(PRODUCT_STOCKTHRESHOLD));
 		}
 		rs.close();
 		conn.close();

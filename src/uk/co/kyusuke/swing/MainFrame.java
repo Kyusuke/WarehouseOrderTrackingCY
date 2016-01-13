@@ -60,7 +60,7 @@ public class MainFrame extends JFrame {
 	}
 	
 	public void showCustomerOrderDetail(){
-		Dimension d = new Dimension(600,400);
+		Dimension d = new Dimension(580,400);
 		changePanel("customerOrderDetail", d);
 	}
 	

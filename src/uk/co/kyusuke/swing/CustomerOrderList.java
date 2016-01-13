@@ -57,6 +57,15 @@ public class CustomerOrderList extends JPanel {
 		btnViewDetails.setBounds(375, 259, 165, 30);
 		add(btnViewDetails);
 		
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mFrame.showMenu();
+			}
+		});
+		btnBack.setBounds(10, 11, 91, 23);
+		add(btnBack);
+		
 		addComponentListener(new CustomComponentListener());
 	}
 	
