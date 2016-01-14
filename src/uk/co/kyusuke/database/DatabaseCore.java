@@ -1,5 +1,6 @@
 package uk.co.kyusuke.database;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -22,8 +23,10 @@ import uk.co.kyusuke.order.Order;
 
 public class DatabaseCore implements Order{
 	
+	DatabaseAddress jdbcA = new DatabaseAddress();
+	
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	static final String DB_URL = "jdbc:mysql://localhost/nbgardens";
+	//static final String DB_URL = "jdbc:mysql://localhost/nbgardens";
 	
 	static final String USER = "root";
 	static final String PASS = "bobby";
@@ -68,6 +71,13 @@ public class DatabaseCore implements Order{
 	ResultSet rs = null;
 	
 	public DatabaseCore(){
+		String DB_URL = "jdbc:mysql://localhost/nbgardens";
+		try {
+			DB_URL = jdbcA.getAddress();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		try{
 			Class.forName(JDBC_DRIVER);
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
